@@ -28,14 +28,16 @@ const SignUPBox = () => {
             Email:Email,
             Password:Password
            }
-           const {data} = await axios.post(`${import.meta.env.VITE_HOST}/api/user/signup`,sentdata)
+           const {data} = await axios.post(`${import.meta.env.VITE_HOST}/api/user/signup`,sentdata,{
+            withCredentials: true,
+           })
            console.log(data)
            if(data.success){
             setOpen(false)
             navigate("/login")
            }else{
             setOpen(false)
-            toast.success(data.message, {
+            toast.warn(data.message, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
