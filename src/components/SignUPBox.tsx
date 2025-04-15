@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import GoogleIcon from '@mui/icons-material/Google';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider,GoogleLogin } from '@react-oauth/google';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from "axios"
@@ -54,6 +54,14 @@ const SignUPBox = () => {
         }
     }
 
+    const handlesucces = async(credentialResponse:any)=>{
+        console.log(credentialResponse)
+    }
+
+    const handelerror = async()=>{
+        console.log("error")
+    }
+
   return (
     <>
       <Backdrop
@@ -76,13 +84,12 @@ const SignUPBox = () => {
                     <h2 className="text-[1.5rem] font-semibold " >Password</h2>
                     <input type="password" value={Password} onChange={(e)=>setPassword(e.target.value)} className="text-black bg-white text-[1.5rem] p-[0.3rem] rounded-[0.5rem] " required/>
                 </div>
-                    <div  className="flex justify-center items-center gap-[1rem] " >
-                <button className="bg-[#7a05ce] text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold "  type="submit" >Create Account</button>
-                <button className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " >
-                    <GoogleIcon/> Sign Up with Google
-                </button>
+                    <div  className="flex justify-center  gap-[1rem] " >
+                <button className="bg-[#7a05ce]  text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-bold "  type="submit" >Create Account</button>
+                <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`} >
+                    <GoogleLogin  onSuccess={handlesucces} onError={handelerror} />
+                </GoogleOAuthProvider>
                 </div>
-
                 <h2 className="text-[1.5rem] font-semibold " >Already have account...<Link to="/login" className="text-blue-500" >Login</Link></h2>
             </form>
         </div>'
