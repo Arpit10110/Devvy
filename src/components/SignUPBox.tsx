@@ -79,7 +79,7 @@ const SignUPBox = () => {
                     <div  className="flex justify-center items-center gap-[1rem] " >
                 <button className="bg-[#7a05ce] text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold "  type="submit" >Create Account</button>
                 <button className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " >
-                    <GoogleIcon/> Sign Up with Google
+                    <GoogleIcon/> SignUp with Google
                 </button>
                 </div>
 
