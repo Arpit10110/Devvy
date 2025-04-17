@@ -6,10 +6,11 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
+import { useGoogleLogin } from "@react-oauth/google";
 
 interface logindatatype {
-    Email: string
-    Password: string
+    email: string
+    password: string
 }
 const Loginbox = () => {
          const navigate = useNavigate()
@@ -22,10 +23,10 @@ const Loginbox = () => {
             try {
                 e.preventDefault()
            const sentdata:logindatatype = {
-            Email:Email,
-            Password:Password
+            email:Email,
+            password:Password
            }
-                const {data} = await axios.post(`${import.meta.env.VITE_HOST}/api/user/login`,sentdata,{
+                const {data} = await axios.post(`${import.meta.env.VITE_HOST}/login`,sentdata,{
                     withCredentials:true
                 })
                 console.log(data)
@@ -51,6 +52,16 @@ const Loginbox = () => {
                 setOpen(false)
             }
         }
+
+        const handleGoogleLogin = useGoogleLogin({
+            onSuccess: async (tokenResponse) => {
+                console.log(tokenResponse);
+                
+            },
+            onError: () => {
+                console.log("Google login failed");
+            },
+        });
     
   return (
     <>
@@ -72,9 +83,9 @@ const Loginbox = () => {
                 </div>
                 <div  className="flex justify-center items-center gap-[1rem]" >
                 <button className="bg-[#7a05ce] text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold "  type="submit" >LogIn</button>
-                <button className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " >
+                <p className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " onClick={()=>handleGoogleLogin()} >
                     <GoogleIcon/> LogIn with Google
-                </button>
+                </p>
                 </div>
                 <h2 className="text-[1.5rem] font-semibold " >Create new Account...<Link to="/signup" className="text-blue-500" >SignUp</Link></h2>
             </form>
