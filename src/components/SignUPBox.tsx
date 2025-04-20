@@ -1,16 +1,17 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import GoogleIcon from '@mui/icons-material/Google';
-import { GoogleOAuthProvider,GoogleLogin } from '@react-oauth/google';
+import {useGoogleLogin } from '@react-oauth/google';
+
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 interface signupdatatype{
-    Name:string,
-    Email:string,
-    Password:string
+    name:string,
+    email:string,
+    password:string
 }
 const SignUPBox = () => {
     const navigate = useNavigate()
@@ -24,11 +25,11 @@ const SignUPBox = () => {
         try {
             e.preventDefault()
            const sentdata:signupdatatype = {
-            Name:Name,
-            Email:Email,
-            Password:Password
+            name:Name,
+            email:Email,
+            password:Password
            }
-           const {data} = await axios.post(`${import.meta.env.VITE_HOST}/api/user/signup`,sentdata,{
+           const {data} = await axios.post(`${import.meta.env.VITE_HOST}/signup`,sentdata,{
             withCredentials: true,
            })
            console.log(data)
@@ -54,13 +55,16 @@ const SignUPBox = () => {
         }
     }
 
-    const handlesucces = async(credentialResponse:any)=>{
-        console.log(credentialResponse)
-    }
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            console.log(tokenResponse);
+            
+        },
+        onError: () => {
+            console.log("Google login failed");
+        },
+    });
 
-    const handelerror = async()=>{
-        console.log("error")
-    }
 
   return (
     <>
@@ -86,9 +90,10 @@ const SignUPBox = () => {
                 </div>
                     <div  className="flex justify-center  gap-[1rem] " >
                 <button className="bg-[#7a05ce]  text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-bold "  type="submit" >Create Account</button>
-                <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`} >
-                    <GoogleLogin  onSuccess={handlesucces} onError={handelerror} />
-                </GoogleOAuthProvider>
+                <p className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " onClick={()=>handleGoogleLogin()} >
+                    <GoogleIcon/> SignUp with Google
+                </p>
+
                 </div>
                 <h2 className="text-[1.5rem] font-semibold " >Already have account...<Link to="/login" className="text-blue-500" >Login</Link></h2>
             </form>
@@ -105,6 +110,7 @@ draggable
 pauseOnHover
 theme="dark"
 />
+ 
     </>
   )
 }

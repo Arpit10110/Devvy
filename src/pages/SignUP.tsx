@@ -5,8 +5,8 @@ import SignUPBox from "../components/SignUPBox"
 const SignUP = () => {
   return (
     <>
-        <Navbar/>
-        <SignUPBox/>
+      <Navbar/>
+      <SignUPBox/>
     </>
   )
 }

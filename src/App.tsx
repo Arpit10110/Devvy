@@ -3,8 +3,10 @@ import { HashRouter as Router, Routes,Route } from 'react-router-dom';
 import Home from './pages/Home.tsx';
 import SignUP from './pages/SignUP';
 import Login from './pages/Login.tsx';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 const App = () => {
   return (
+    <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`} >
     <Router>
       <Routes>
         <Route path="/" element={<Home/>} />
@@ -12,6 +14,7 @@ const App = () => {
         <Route path='/login' element={<Login/>} />
       </Routes>
     </Router>
+    </GoogleOAuthProvider>
   )
 }
 
