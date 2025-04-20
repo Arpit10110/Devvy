@@ -1,4 +1,3 @@
-import React from 'react'
 import { topProducts } from '../data/homepagedata';
 import ProductCard from './ProductCard';
 import GradientCard  from "./GradientCard"
