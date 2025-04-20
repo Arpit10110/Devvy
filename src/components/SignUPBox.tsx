@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import GoogleIcon from '@mui/icons-material/Google';
 import {useGoogleLogin } from '@react-oauth/google';
+
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from "axios"
@@ -64,6 +65,7 @@ const SignUPBox = () => {
         },
     });
 
+
   return (
     <>
       <Backdrop
@@ -91,6 +93,7 @@ const SignUPBox = () => {
                 <p className="bg-gray-700 text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold flex items-center gap-[5px] " onClick={()=>handleGoogleLogin()} >
                     <GoogleIcon/> SignUp with Google
                 </p>
+
                 </div>
                 <h2 className="text-[1.5rem] font-semibold " >Already have account...<Link to="/login" className="text-blue-500" >Login</Link></h2>
             </form>
