@@ -79,7 +79,7 @@ const Loginbox = () => {
                 </div>
                 <div className="w-full flex flex-col gap-[0.5rem] " >
                     <h2 className="text-[1.5rem] font-semibold " >Password</h2>
-                    <input type="password" value={Password} onChange={(e)=>setPassword(e.target.value)} className="text-black bg-white text-[1.5rem] p-[0.3rem] rounded-[0.5rem] " required/>
+                    <input autoComplete="false" type="password" value={Password} onChange={(e)=>setPassword(e.target.value)} className="text-black bg-white text-[1.5rem] p-[0.3rem] rounded-[0.5rem] " required/>
                 </div>
                 <div  className="flex justify-center items-center gap-[1rem]" >
                 <button className="bg-[#7a05ce] text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-semibold "  type="submit" >LogIn</button>

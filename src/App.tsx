@@ -6,7 +6,7 @@ import Login from './pages/Login.tsx';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 const App = () => {
   return (
-    <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`} >
+    <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}  >
     <Router>
       <Routes>
         <Route path="/" element={<Home/>} />
@@ -14,7 +14,7 @@ const App = () => {
         <Route path='/login' element={<Login/>} />
       </Routes>
     </Router>
-    </GoogleOAuthProvider>
+     </GoogleOAuthProvider>
   )
 }
 

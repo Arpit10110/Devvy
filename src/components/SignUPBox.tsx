@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import GoogleIcon from '@mui/icons-material/Google';
 import {useGoogleLogin } from '@react-oauth/google';
@@ -19,6 +19,10 @@ const SignUPBox = () => {
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
     const [open, setOpen] = useState(false);
+
+   
+    
+
 
     const createuser = async(e:any)=>{
         setOpen(true)
@@ -58,7 +62,6 @@ const SignUPBox = () => {
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
             console.log(tokenResponse);
-            
         },
         onError: () => {
             console.log("Google login failed");
@@ -86,7 +89,7 @@ const SignUPBox = () => {
                 </div>
                 <div className="w-full flex flex-col gap-[0.5rem] " >
                     <h2 className="text-[1.5rem] font-semibold " >Password</h2>
-                    <input type="password" value={Password} onChange={(e)=>setPassword(e.target.value)} className="text-black bg-white text-[1.5rem] p-[0.3rem] rounded-[0.5rem] " required/>
+                    <input autoComplete="false" type="password" value={Password} onChange={(e)=>setPassword(e.target.value)} className="text-black bg-white text-[1.5rem] p-[0.3rem] rounded-[0.5rem] " required/>
                 </div>
                     <div  className="flex justify-center  gap-[1rem] " >
                 <button className="bg-[#7a05ce]  text-[1.5rem] px-[0.8rem] py-[0.4rem] rounded-[0.5rem] hover:scale-[1.03] transition-all cursor-pointer font-bold "  type="submit" >Create Account</button>
