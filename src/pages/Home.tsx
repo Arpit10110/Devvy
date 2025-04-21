@@ -3,6 +3,8 @@ import Herosection from "../components/Herosection"
 import Marqueee from "../components/Marqueee"
 import Howitworks from "../components/Howitworks"
 import Rewardshowcase from "../components/Rewardshowcase"
+import Testimonials from "../components/Testimonials"
+import Footer from "../components/footer.tsx"
 const Home = () => {
   return (
     <>
@@ -11,6 +13,8 @@ const Home = () => {
         <Marqueee/>
         <Howitworks/>
         <Rewardshowcase/>
+        <Testimonials/>
+        <Footer/>
     </>
 )
 }

@@ -13,6 +13,7 @@ const ProductCard = ({img,price,title,tagline,coins}:any) => {
                     <h1 className='text-[2rem] font-tektur font-bold' >{price}</h1>
                     <h1 className='text-[2rem] font-tektur font-bold' >🪙{coins}</h1>
                 </div>
+                <button className="font-tektur my-[1rem] bg-[#ffffff1a] px-[2rem] py-[0.5rem] text-[1.5rem] rounded-[5px] font-semibold cursor-pointer " >Add to Cart</button>
             </div>
         </div>
     </>
